@@ -44,7 +44,13 @@ class _HomeState extends State<Home> {
         height: double.infinity,
         width: double.infinity,
         child: isLoaded ? Image.file(finalImagePath, fit: BoxFit.fill)
-            : const Center(child: Text("Capture an Image"),)
+            : Center(child: ElevatedButton(
+              onPressed: () => getImage(),
+              child: const Text('Gallery'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.pink,
+              ),
+            ),)
       ),
     );
   }
@@ -72,6 +78,20 @@ class _HomeState extends State<Home> {
     Navigator.of(context).pop();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => Details(finalText)));
+  }
+
+  // picking image
+  void getImage() async {
+    final ImagePicker imagePicker = ImagePicker();
+    final XFile? image = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      finalImagePath = File(image!.path);
+      isLoaded = true;
+      imagePath = image.path.toString();
+    });
+
+    scanText(imagePath);
   }
 
   // camera image
