@@ -17,18 +17,39 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     switch(_index) {
       case 0:
-        FlutterClipboard.copy(widget.text).then((value) => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Copied'))));
         break;
 
       case 1:
+        
+        break;
+
+      case 2:
+        
+        break;
+
+      case 3:
+        
         break;
     }
     
     return Scaffold(
       key: key,
       appBar: AppBar(
-        title: const Text("Extract Text"),
+        title: const Text("Extracted Text"),
         backgroundColor: Colors.pink,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.copy),
+            onPressed: () {
+              FlutterClipboard.copy(widget.text).then((value) => ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Copied'),
+                  behavior: SnackBarBehavior.floating,
+              )));
+            },
+            tooltip: 'Copy',
+          ),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(8),
@@ -48,24 +69,28 @@ class _DetailsState extends State<Details> {
       onTap: (int index) => setState(() => _index = index),
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.copy),
-          label: 'Copy',
+          icon: Icon(Icons.description),
+          label: 'Details',
           backgroundColor: Colors.pink,
+          tooltip: 'Details',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.translate),
           label: 'Translate',
           backgroundColor: Colors.pink,
+          tooltip: 'Translate',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.voicemail),
-          label: 'Voice',
+          icon: Icon(Icons.speaker_phone),
+          label: 'Speaker',
           backgroundColor: Colors.pink,
+          tooltip: 'Speaker',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
           label: 'Settings',
           backgroundColor: Colors.pink,
+          tooltip: 'Settings',
         ),
       ],
       selectedItemColor: Colors.yellowAccent,

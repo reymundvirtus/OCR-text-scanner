@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ocr_text_scanner/Drawer.dart';
 import 'Details.dart';
 
 class Home extends StatefulWidget {
@@ -16,17 +17,33 @@ class _HomeState extends State<Home> {
   String finalText = '';
   bool isLoaded = false;
   late File finalImagePath;
-  // PickedFile _image;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerSelect(),
       appBar: AppBar(
         title: const Text('OCR: Text Scanner'),
         backgroundColor: Colors.pink,
         actions: [
           TextButton(
-            onPressed: () => scanText(imagePath),
+            onPressed: () => clearImage(),
+            child: const Text(
+              'Clear',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+          TextButton(
+          onPressed: () { 
+            clearText();
+            isLoaded ? scanText(imagePath) : ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('No Image Selected'),
+                behavior: SnackBarBehavior.floating,
+              ));
+            },
             child: const Text(
               'Scan',
               style: TextStyle(
@@ -46,7 +63,7 @@ class _HomeState extends State<Home> {
         child: isLoaded ? Image.file(finalImagePath, fit: BoxFit.fill)
             : Center(child: ElevatedButton(
               onPressed: () => getImage(),
-              child: const Text('Gallery'),
+              child: const Text('Gallery', style: TextStyle(fontSize: 20)),
               style: ElevatedButton.styleFrom(
                 primary: Colors.pink,
               ),
@@ -55,6 +72,7 @@ class _HomeState extends State<Home> {
     );
   }
 
+  // scan text from image
   Future scanText(String path) async {
     buildShowDialog(context);
 
@@ -107,6 +125,22 @@ class _HomeState extends State<Home> {
     });
 
     scanText(imagePath);
+  }
+
+  // clear image
+  void clearImage() {
+    setState(() {
+      finalText = '';
+      imagePath = '';
+      isLoaded = false;
+    });
+  }
+
+  // clear text
+  void clearText() {
+    setState(() {
+      finalText = '';
+    });
   }
 
   // loading
