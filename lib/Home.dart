@@ -6,7 +6,8 @@ import 'package:ocr_text_scanner/Drawer.dart';
 import 'Details.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final String text;
+  Home(this.text);
 
   @override
   State<Home> createState() => _HomeState();
@@ -21,19 +22,19 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const DrawerSelect(),
+      drawer: DrawerSelect(widget.text),
       appBar: AppBar(
         title: const Text('OCR: Text Scanner'),
         backgroundColor: Colors.pink,
         actions: [
           TextButton(
             onPressed: () => clearImage(),
-            child: const Text(
+            child: isLoaded ? const Text(
               'Clear',
               style: TextStyle(
                 color: Colors.white,
               ),
-            ),
+            ) : const Text(''),
           ),
           TextButton(
           onPressed: () { 

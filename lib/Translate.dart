@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Translate extends StatefulWidget {
-  const Translate({ Key? key }) : super(key: key);
+  final String text;
+  Translate(this.text);
 
   @override
   State<Translate> createState() => _TranslateState();

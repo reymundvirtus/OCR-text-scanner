@@ -3,22 +3,22 @@ import 'ScanText.dart';
 import 'Home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    String widget = "";
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home: Home(widget),
     );
   }
 }

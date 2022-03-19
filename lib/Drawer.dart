@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'Settings.dart';
 import 'Speech.dart';
 import 'Translate.dart';
 
 class DrawerSelect extends StatefulWidget {
-  const DrawerSelect({Key? key}) : super(key: key);
+  final String text;
+  DrawerSelect(this.text);
 
   @override
   State<DrawerSelect> createState() => _DrawerSelectState();
@@ -47,10 +49,10 @@ class _DrawerSelectState extends State<DrawerSelect> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Speech()),
+                  MaterialPageRoute(builder: (context) => Speech()),
                 );
               },
-              hoverColor: Colors.grey,
+              hoverColor: Colors.white60,
             ),
             ListTile(
               leading: const Icon(
@@ -66,10 +68,29 @@ class _DrawerSelectState extends State<DrawerSelect> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Translate()),
+                  MaterialPageRoute(builder: (context) => Translate(widget.text)),
                 );
               },
-              hoverColor: Colors.grey,
+              hoverColor: Colors.white60,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.settings_outlined,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "Settings",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Settings()),
+                );
+              },
+              hoverColor: Colors.white60,
             ),
           ],
         ),
