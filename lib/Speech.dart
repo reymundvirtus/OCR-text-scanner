@@ -16,6 +16,7 @@ class _SpeechState extends State<Speech> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Speech'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Center(

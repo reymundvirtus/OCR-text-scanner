@@ -24,7 +24,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
       drawer: DrawerSelect(widget.text),
       appBar: AppBar(
-        title: const Text('OCR: Text Scanner'),
         backgroundColor: Colors.pink,
         actions: [
           TextButton(
@@ -36,21 +35,16 @@ class _HomeState extends State<Home> {
               ),
             ) : const Text(''),
           ),
-          TextButton(
-          onPressed: () { 
-            clearText();
-            isLoaded ? scanText(imagePath) : ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('No Image Selected'),
-                behavior: SnackBarBehavior.floating,
-              ));
-            },
-            child: const Text(
-              'Scan',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
+          IconButton(
+            icon: const Icon(Icons.document_scanner_outlined),
+            onPressed: () { 
+              clearText();
+              isLoaded ? scanText(imagePath) : ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('No Image Selected'),
+                  behavior: SnackBarBehavior.floating,
+                ));
+            }, 
           ),
         ],
       ),

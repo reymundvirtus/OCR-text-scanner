@@ -3,7 +3,6 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'Home.dart';
 import 'Settings.dart';
-import 'Speech.dart';
 import 'Translate.dart';
 
 class Details extends StatefulWidget {
@@ -17,33 +16,13 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   final GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
   final FlutterTts flutterTts = FlutterTts();
-  int _index = 0;
   
   @override
   Widget build(BuildContext context) {
-    switch(_index) {
-      case 0:
-        break;
-
-      case 1:
-        Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Home(widget.text)),
-                );
-        break;
-
-      case 2:
-        Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Settings()),
-                );
-        break;
-    }
-
     return Scaffold(
       key: key,
       appBar: AppBar(
-        title: const Text("Extracted Text"),
+        title: const Text("Text"),
         backgroundColor: Colors.pink,
         actions: [
           IconButton(
@@ -74,6 +53,16 @@ class _DetailsState extends State<Details> {
             },
             tooltip: 'Speak',
           ),
+          IconButton(
+            icon: const Icon(Icons.settings_outlined),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Settings()),
+              );
+            },
+            tooltip: 'Settings',
+          ),
         ],
       ),
       body: Container(
@@ -82,37 +71,8 @@ class _DetailsState extends State<Details> {
         height: double.infinity,
         width: double.infinity,
         child: SelectableText(
-            widget.text.isEmpty ? "No text scanned" : widget.text),
+          widget.text.isEmpty ? "No text scanned" : widget.text, style: const TextStyle(fontSize: 15),),
       ),
-      bottomNavigationBar: _bottomTab(), 
-    );
-  }
-
-  Widget _bottomTab() {
-    return BottomNavigationBar(
-      currentIndex: _index,
-      onTap: (int index) => setState(() => _index = index),
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.description),
-          label: 'Details',
-          backgroundColor: Colors.pink,
-          tooltip: 'Details',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined),
-          label: 'Home',
-          backgroundColor: Colors.pink,
-          tooltip: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings_outlined),
-          label: 'Settings',
-          backgroundColor: Colors.pink,
-          tooltip: 'Settings',
-        ),
-      ],
-      selectedItemColor: Colors.yellowAccent,
     );
   }
 

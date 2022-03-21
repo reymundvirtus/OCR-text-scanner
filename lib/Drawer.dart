@@ -47,6 +47,7 @@ class _DrawerSelectState extends State<DrawerSelect> {
                 ),
               ),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Speech()),
@@ -66,6 +67,7 @@ class _DrawerSelectState extends State<DrawerSelect> {
                 ),
               ),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Translate(widget.text)),
@@ -85,6 +87,7 @@ class _DrawerSelectState extends State<DrawerSelect> {
                 ),
               ),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const Settings()),
