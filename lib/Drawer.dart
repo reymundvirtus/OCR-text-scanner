@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Settings.dart';
 import 'Speech.dart';
 import 'Translate.dart';
+import 'scratch.dart';
 
 class DrawerSelect extends StatefulWidget {
   final String text;
@@ -70,7 +71,7 @@ class _DrawerSelectState extends State<DrawerSelect> {
                 Navigator.of(context).pop();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Translate(widget.text)),
+                  MaterialPageRoute(builder: (context) => const Translate()),
                 );
               },
               hoverColor: Colors.white60,

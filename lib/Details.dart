@@ -41,7 +41,7 @@ class _DetailsState extends State<Details> {
             onPressed: () {
               Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Translate(widget.text)),
+                  MaterialPageRoute(builder: (context) => Translate()),
               );
             },
             tooltip: 'Translate',

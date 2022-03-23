@@ -36,6 +36,12 @@ class _HomeState extends State<Home> {
             ) : const Text(''),
           ),
           IconButton(
+            icon: const Icon(Icons.image_outlined),
+            onPressed: () { 
+              getImage();
+            }, 
+          ),
+          IconButton(
             icon: const Icon(Icons.document_scanner_outlined),
             onPressed: () { 
               clearText();
@@ -56,13 +62,15 @@ class _HomeState extends State<Home> {
         height: double.infinity,
         width: double.infinity,
         child: isLoaded ? Image.file(finalImagePath, fit: BoxFit.fill)
-            : Center(child: ElevatedButton(
-              onPressed: () => getImage(),
-              child: const Text('Gallery', style: TextStyle(fontSize: 20)),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.pink,
+            : const Center(
+                child: Text(
+                  'No Image Selected',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-            ),)
       ),
     );
   }
@@ -72,7 +80,7 @@ class _HomeState extends State<Home> {
     buildShowDialog(context);
 
     final inputImage = InputImage.fromFilePath(path);
-    final textDetector = GoogleMlKit.vision.textDetector();
+    final textDetector = GoogleMlKit.vision.textDetectorV2();
     final RecognisedText recognizedText =
         await textDetector.processImage(inputImage);
 
