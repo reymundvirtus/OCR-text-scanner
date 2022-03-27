@@ -18,8 +18,8 @@ class _TranslateState extends State<Translate> {
   String userinput = "";
   String result = "";
 
-  List<String> availableLang = <String>['English', 'Japnease', 'Filipino'];
-  List<String> languageCode = <String>['en', 'ja', 'tl'];
+  List<String> availableLang = <String>['English', 'Filipino', 'Japnease', 'Korean'];
+  List<String> languageCode = <String>['en', 'tl', 'ja', 'ko'];
 
   GoogleTranslator translator = GoogleTranslator();
   final FlutterTts flutterTts = FlutterTts();
@@ -33,9 +33,9 @@ class _TranslateState extends State<Translate> {
           IconButton(
             icon: const Icon(Icons.clear),
             onPressed: () {
-              clearText();
               setState(() {
                 userinput = "";
+                result = "";
               });
             },
             tooltip: 'Clear',
@@ -83,13 +83,15 @@ class _TranslateState extends State<Translate> {
                         dropdownFrom = newValue!;
                       });
                     },
+                    borderRadius: BorderRadius.circular(10),
+                    isExpanded: true,
                     items: availableLang
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
                       );
-                    }).toList(),
+                    }).toList(), 
                   ),
                 ),
               ],
@@ -113,6 +115,8 @@ class _TranslateState extends State<Translate> {
                         dropdownTo = newValue!;
                       });
                     },
+                    borderRadius: BorderRadius.circular(10),
+                    isExpanded: true,
                     items: availableLang
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
@@ -123,6 +127,9 @@ class _TranslateState extends State<Translate> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 10,
             ),
             // TextFormFeild
             TextFormField(
@@ -146,9 +153,6 @@ class _TranslateState extends State<Translate> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.pink,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
               ),
               child: const Text('Translate',
                 style: TextStyle(
@@ -160,7 +164,9 @@ class _TranslateState extends State<Translate> {
                 trans();
               }
             ),
-
+            const SizedBox(
+              height: 10,
+            ),
             // Result
             Center(
               child: Text(result,
@@ -187,14 +193,6 @@ class _TranslateState extends State<Translate> {
         to: languageCode[availableLang.indexOf(dropdownTo)]);
     setState(() {
       result = translation.text;
-    });
-  }
-
-  // clear text
-  void clearText() {
-    setState(() {
-      userinput = '';
-      result = '';
     });
   }
 

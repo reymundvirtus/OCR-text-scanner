@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'ScanText.dart';
 import 'Home.dart';
 
 void main() {

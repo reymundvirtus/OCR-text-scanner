@@ -78,6 +78,26 @@ class _DrawerSelectState extends State<DrawerSelect> {
             ),
             ListTile(
               leading: const Icon(
+                Icons.screen_search_desktop_outlined,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "Scratch",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const scratch()),
+                );
+              },
+              hoverColor: Colors.white60,
+            ),
+            ListTile(
+              leading: const Icon(
                 Icons.settings_outlined,
                 color: Colors.white,
               ),
