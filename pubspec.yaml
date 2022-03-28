@@ -41,6 +41,9 @@ dependencies:
   flutter_tts: ^3.3.3
   translator: ^0.1.7
   image_cropper: ^1.5.0
+  path_provider: ^2.0.9
+  image_gallery_saver: '^1.7.1'
+  permission_handler: ^9.2.0
 
 dev_dependencies:
   flutter_test:

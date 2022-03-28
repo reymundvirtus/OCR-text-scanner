@@ -59,7 +59,7 @@ class _TranslateState extends State<Translate> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
             // First Row

@@ -60,7 +60,7 @@ class _ExtractTranslateState extends State<ExtractTranslate> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
             // First Row
@@ -133,7 +133,7 @@ class _ExtractTranslateState extends State<ExtractTranslate> {
             // TextFormFeild
             Center(
               child: SizedBox(
-                height: 200,
+                height: 225,
                 child: SingleChildScrollView(
                   child: SelectableText(
                     widget.text,
@@ -164,7 +164,7 @@ class _ExtractTranslateState extends State<ExtractTranslate> {
             // Result
             Center(
               child: SizedBox(
-                height: 200,
+                height: 225,
                 child: SingleChildScrollView(
                   child: SelectableText(result,
                     style: const TextStyle(
