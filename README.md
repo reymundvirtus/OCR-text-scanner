@@ -1,4 +1,4 @@
-# ocr_text_scanner
+# OCR_Text_Scanner
 
 A new Flutter project.
 

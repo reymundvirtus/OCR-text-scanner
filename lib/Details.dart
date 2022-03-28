@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'Home.dart';
+import 'ExtractTranslate.dart';
 import 'Settings.dart';
-import 'Translate.dart';
 
 class Details extends StatefulWidget {
   final String text;
@@ -41,7 +40,7 @@ class _DetailsState extends State<Details> {
             onPressed: () {
               Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Translate()),
+                  MaterialPageRoute(builder: (context) => ExtractTranslate(widget.text)),
               );
             },
             tooltip: 'Translate',

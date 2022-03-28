@@ -49,12 +49,14 @@ class _HomeState extends State<Home> {
                       behavior: SnackBarBehavior.floating,
                     ));
             },
+            tooltip: 'Crop Image',
           ),
           IconButton(
             icon: const Icon(Icons.image_outlined),
             onPressed: () {
               getImage();
             },
+            tooltip: 'Pick Image',
           ),
           IconButton(
             icon: const Icon(Icons.document_scanner_outlined),
@@ -67,6 +69,7 @@ class _HomeState extends State<Home> {
                       behavior: SnackBarBehavior.floating,
                     ));
             },
+            tooltip: 'Scan',
           ),
         ],
       ),

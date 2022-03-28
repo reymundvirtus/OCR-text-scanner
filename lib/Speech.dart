@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class Speech extends StatefulWidget {
+  const Speech({Key? key}) : super(key: key);
 
   @override
   State<Speech> createState() => _SpeechState();

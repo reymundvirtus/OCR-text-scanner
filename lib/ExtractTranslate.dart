@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:translator/translator.dart';
 
-class Translate extends StatefulWidget {
-  const Translate({Key? key}) : super(key: key);
+class ExtractTranslate extends StatefulWidget {
+  final String text;
+  ExtractTranslate(this.text);
 
   @override
-  State<Translate> createState() => _TranslateState();
+  State<ExtractTranslate> createState() => _ExtractTranslateState();
 }
 
-class _TranslateState extends State<Translate> {
+class _ExtractTranslateState extends State<ExtractTranslate> {
   String dropdownFrom = "English";
   String dropdownTo = "Filipino";
   String userinput = "";
@@ -21,6 +22,7 @@ class _TranslateState extends State<Translate> {
 
   GoogleTranslator translator = GoogleTranslator();
   final FlutterTts flutterTts = FlutterTts();
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,6 @@ class _TranslateState extends State<Translate> {
             icon: const Icon(Icons.clear),
             onPressed: () {
               setState(() {
-                userinput = "";
                 result = "";
               });
             },
@@ -130,20 +131,15 @@ class _TranslateState extends State<Translate> {
               height: 10,
             ),
             // TextFormFeild
-            TextFormField(
-              minLines: 10,
-              maxLines: 10,
-              onChanged: (val) {
-                setState(() {
-                  userinput = val;
-                });
-              },
-              decoration: const InputDecoration(
-                labelText: "Translate text",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
+            Center(
+              child: SizedBox(
+                height: 200,
+                child: SingleChildScrollView(
+                  child: SelectableText(
+                    widget.text,
+                  ),
                 ),
-              ),
+              )
             ),
             const SizedBox(
               height: 10,
@@ -167,11 +163,15 @@ class _TranslateState extends State<Translate> {
             ),
             // Result
             Center(
-              child: Text(result,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                )
+              child: SizedBox(
+                height: 200,
+                child: SingleChildScrollView(
+                  child: SelectableText(result,
+                    style: const TextStyle(
+                      color: Colors.black,
+                    )
+                  ),
+                ),
               )
             ),
           ],
@@ -183,11 +183,11 @@ class _TranslateState extends State<Translate> {
   void trans() async {
     final translator = GoogleTranslator();
     translator
-        .translate(userinput,
+        .translate(widget.text,
             from: languageCode[availableLang.indexOf(dropdownFrom)],
             to: languageCode[availableLang.indexOf(dropdownTo)])
         .then(print);
-    var translation = await translator.translate(userinput,
+    var translation = await translator.translate(widget.text,
         to: languageCode[availableLang.indexOf(dropdownTo)]);
     setState(() {
       result = translation.text;
